@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MovimentoManualService } from './movimento-manual.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'MovimentoManual';
+
+  constructor(private movimentoManualService :MovimentoManualService)
+  {}
+
+  carregarGrid(){
+    this.movimentoManualService.obterTodos()
+    .then(movimento => console.log(movimento))
+    .catch(error => console.error(error));
+    
+  }
+  
+
 }
