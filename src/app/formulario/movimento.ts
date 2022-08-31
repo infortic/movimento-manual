@@ -1,5 +1,4 @@
 export class Movimento{
-    id?: number = 1;
     datMes: string = "";
     datAno: string = ""; 
     numeroLacamento: number = 1;

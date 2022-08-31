@@ -1,12 +1,12 @@
 <div class="mx-auto" style="width: 1000px;">
-  <h1 align="center">Movimento Manual</h1>
-  <form>
+  <h1>Movimento Manual</h1>
+  <form method="post" [formGroup]="formMovimento" (ngSubmit)="criar()">
     <div class="row">
       <div class="col">
-        <input type="text" class="form-control" placeholder="Mês" formControlName="datMes">
+        <input type="number" class="form-control" placeholder="Mês"  formControlName="datMes">
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Ano" formControlName="datAno">
+        <input type="number" class="form-control" placeholder="Ano" formControlName="datAno">
       </div>
     </div><br>
     <div class="row">
@@ -14,12 +14,12 @@
         <input type="text" class="form-control" placeholder="Produto" formControlName="codProduto">
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Cosif" formControlName="Descricao">
+        <input type="number" class="form-control" placeholder="Cosif" formControlName="Descricao">
       </div>
     </div><br>
     <div class="row">
       <div class="col">
-        <input type="text" class="form-control" placeholder="Valor" formControlName="">
+        <input type="number" class="form-control" placeholder="Valor" formControlName="">
       </div>
     </div><br>
     <div class="form-group">
@@ -30,7 +30,7 @@
         <tbody>
           <tr>
             <td><button type="button" class="btn btn-primary btn-sm">Limpar</button></td>
-            <td><button type="button" class="btn btn-primary btn-sm" (click)="teste()">Novo</button></td>
+            <td><button type="button" class="btn btn-primary btn-sm" (click)="criar()">Novo</button></td>
             <td><button type="button" class="btn btn-primary btn-sm">Incluir</button></td>
             <td><button type="button" (click)="carregarGrid()" class="btn btn-primary btn-sm">Buscar</button></td>
           </tr>
