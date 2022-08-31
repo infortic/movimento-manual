@@ -6,7 +6,7 @@ export const environment = {
   production: false
 };
 
-export const API_PATH = "http://localhost:4100/"
+export const API_PATH = "http://192.168.15.4:8080/"
 
 /*
  * For easier debugging in development mode, you can import the following file

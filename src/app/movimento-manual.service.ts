@@ -14,4 +14,12 @@ export class MovimentoManualService {
     return this.httpClient.get<IMovimento[]>(`${API_PATH}mivimento-manual`).toPromise();
   }
 
+  oberMovimentoPorMesAno(mes: number, ano: number){
+    return this.httpClient.get<IMovimento[]>(`${API_PATH}mivimento-manual/obter-movimento-mes-ano${mes}/${ano}`).toPromise();
+  }
+
+  incluir(movimento: IMovimento){
+    return this.httpClient.post<IMovimento>(`${API_PATH}mivimento-manual`, movimento).toPromise();
+  }
+
 }

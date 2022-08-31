@@ -3,42 +3,42 @@
   <form>
     <div class="row">
       <div class="col">
-        <input type="text" class="form-control" placeholder="Mês">
+        <input type="text" class="form-control" placeholder="Mês" formControlName="datMes">
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Ano">
-      </div>
-    </div><br>
-    <div class="row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Produto">
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Cosif">
+        <input type="text" class="form-control" placeholder="Ano" formControlName="datAno">
       </div>
     </div><br>
     <div class="row">
       <div class="col">
-        <input type="text" class="form-control" placeholder="Valor">
+        <input type="text" class="form-control" placeholder="Produto" formControlName="codProduto">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Cosif" formControlName="Descricao">
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Valor" formControlName="">
       </div>
     </div><br>
     <div class="form-group">
-        <textarea type="text" class="form-control" placeholder="Descriçao"></textarea>
+        <textarea type="text" class="form-control" [disabled]="true" placeholder="Descriçao" formControlName=""></textarea>
     </div>
-    
+    <div class="container-fluid m-3 p-3" align="center">
+      <table>
+        <tbody>
+          <tr>
+            <td><button type="button" class="btn btn-primary btn-sm">Limpar</button></td>
+            <td><button type="button" class="btn btn-primary btn-sm" (click)="teste()">Novo</button></td>
+            <td><button type="button" class="btn btn-primary btn-sm">Incluir</button></td>
+            <td><button type="button" (click)="carregarGrid()" class="btn btn-primary btn-sm">Buscar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div><br>
   </form><p></p>
-  <div class="container-fluid m-3 p-3" align="center">
-    <table>
-      <tbody>
-        <tr>
-          <td><button type="button" class="btn btn-primary btn-sm">Limpar</button></td>
-          <td><button type="button" class="btn btn-primary btn-sm">Novo</button></td>
-          <td><button type="button" class="btn btn-primary btn-sm">Incluir</button></td>
-          <td><button type="button" class="btn btn-primary btn-sm">Buscar</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </div><br>
+ 
  
   <table class="table" >
     <thead class="thead-light">

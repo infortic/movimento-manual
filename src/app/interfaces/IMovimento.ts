@@ -1,5 +1,5 @@
 export interface IMovimento{
-    id: number,
+    id?: number,
     datMes: string,
     datAno: string, 
     numeroLacamento: number,
