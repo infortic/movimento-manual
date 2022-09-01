@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IMovimento } from './interfaces/IMovimento';
 import { MovimentoManualService } from './movimento-manual.service';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Movimento } from './formulario/movimento';
+import { ANOS_VALIDOS } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -13,57 +14,60 @@ export class AppComponent implements OnInit{
   title = 'MovimentoManual';
   formMovimento!: FormGroup;
   formAtivo: boolean = true;
-
-  constructor(
+  movimentoObject!: Movimento;
+  grid: any = [];
+  mes: any =[1,2,3,4,5,6,7,8,9,10,11,12];
+  ano: any =ANOS_VALIDOS;
+  
+ constructor(
     private movimentoManualService :MovimentoManualService,
     private fb: FormBuilder
     )
   {}
 
   ngOnInit(): void {
+    this.obterTodos()
     this.configurarFormulario();
-    this.carregarGrid();
+    this.movimentoObject = new Movimento;
   }
   
+  testar(){
+    console.log(this.ano)
+  }
+
   configurarFormulario(){
     this.formMovimento = this.fb.group({
-      datMes: [""],
-      datAno: [""],
+      datMes: [],
+      datAno: [],
       numeroLacamento: [""],
       datcodProdutoes: [""],
       codCosif: [""],
-      Descricao: [""],
+      descricao: [""],
       dataMovimento: [""],
       codUsuario: [""],
       valor: [""],
       ativo: [true],
+      codProduto: [],
     });
   }
 
   criar(){
-    this.movimentoManualService.incluir(this.formMovimento.value)
+    this.movimentoObject.datMes = this.formMovimento.value.datMes
+
+    console.log(this.movimentoObject)
+    this.movimentoManualService.incluir(this.movimentoObject)
   }
 
-  carregarGrid(){
+  obterTodos(){
     this.movimentoManualService.obterTodos()
-    .then(movimento => console.log(movimento)
-    
-    )
+    .then(data => this.grid = data)
     .catch(error => console.error(error));
-     
-  }
-
-  incluir(movimento: IMovimento){
-    this.movimentoManualService.incluir(movimento)
-    .then(movimento => console.log(movimento))
-    .catch(error => console.error(error));
+    console.log(this.grid)
   }
 
   oberMovimentoPorMesAno(mes: number, ano: number){
     this.movimentoManualService.oberMovimentoPorMesAno(mes, ano)
     .then(movimento => console.log(movimento))
     .catch(error => console.error(error));
-  }
-
-  
+  }  
 }

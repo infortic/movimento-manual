@@ -3,41 +3,48 @@
   <form method="post" [formGroup]="formMovimento" (ngSubmit)="criar()">
     <div class="row">
       <div class="col">
-        <input type="number" class="form-control" placeholder="Mês"  formControlName="datMes">
+        <select type="number" class="form-control" placeholder="Mês"  formControlName="datMes">
+          <option>Escolha um mês</option>
+          <option *ngFor="let mes of mes">{{mes}}</option>
+        </select>
       </div>
       <div class="col">
-        <input type="number" class="form-control" placeholder="Ano" formControlName="datAno">
-      </div>
-    </div><br>
-    <div class="row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Produto" formControlName="codProduto">
-      </div>
-      <div class="col">
-        <input type="number" class="form-control" placeholder="Cosif" formControlName="Descricao">
+        <select type="number" class="form-control" placeholder="Ano"  formControlName="datAno">
+          <option>Escolha um ano</option>
+          <option *ngFor="let ano of ano">{{ano}}</option>
+        </select>
       </div>
     </div><br>
     <div class="row">
       <div class="col">
-        <input type="number" class="form-control" placeholder="Valor" formControlName="">
+        <input type="text" [disabled]="true" class="form-control" placeholder="Produto" formControlName="codProduto">
+      </div>
+      <div class="col">
+        <input type="number" [disabled]="formMovimento.value.ativo" class="form-control" placeholder="Cosif" formControlName="codCosif">
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col">
+        <input [disabled]="true" type="number" class="form-control" [disabled]="formMovimento.value.ativo" placeholder="Valor" formControlName="valor">
       </div>
     </div><br>
     <div class="form-group">
-        <textarea type="text" class="form-control" [disabled]="true" placeholder="Descriçao" formControlName=""></textarea>
+        <textarea type="text" class="form-control" placeholder="Descriçao" formControlName="descricao"></textarea>
     </div>
-    <div class="container-fluid m-3 p-3" align="center">
-      <table>
-        <tbody>
-          <tr>
-            <td><button type="button" class="btn btn-primary btn-sm">Limpar</button></td>
-            <td><button type="button" class="btn btn-primary btn-sm" (click)="criar()">Novo</button></td>
-            <td><button type="button" class="btn btn-primary btn-sm">Incluir</button></td>
-            <td><button type="button" (click)="carregarGrid()" class="btn btn-primary btn-sm">Buscar</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div><br>
-  </form><p></p>
+  </form>
+  <div class="container-fluid m-3 p-3" align="center">
+    <table>
+      <tbody>
+        <tr>
+          <td><button type="button" class="btn btn-primary btn-sm" (click)="testar()">Limpar</button></td>
+          <td><button type="button" class="btn btn-primary btn-sm" >Novo</button></td>
+          <td><button type="button" class="btn btn-primary btn-sm" (click)="criar()">Incluir</button></td>
+          <td><button type="button" (click)="obterTodos()" class="btn btn-primary btn-sm">Buscar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div><br>
+  <p></p>
  
  
   <table class="table" >
@@ -46,12 +53,21 @@
         <th scope="col">Mês</th>
         <th scope="col">Ano</th>
         <th scope="col">Código do Produto</th>
+        
         <th scope="col">NR Lançamento</th>
         <th scope="col">Descriçao</th>
         <th scope="col">Valor</th>
       </tr>
     </thead>
     <tbody>
+      <tr *ngFor="let data of grid">
+        <td>{{data.datMes}}</td>
+        <td>{{data.datAno}}</td>
+        <td>{{data.codProduto}}</td>
+        <td>{{data.numeroLacamento}}</td>
+        <td>{{data.descricao}}</td>
+        <td>{{data.valor}}</td>
+      </tr>
     </tbody>
   </table>
 </div>

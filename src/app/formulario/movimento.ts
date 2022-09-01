@@ -1,6 +1,6 @@
 export class Movimento{
-    datMes: string = "";
-    datAno: string = ""; 
+    datMes: number = 1;
+    datAno: number = 1; 
     numeroLacamento: number = 1;
     codProduto: number = 1;
     codCosif: number = 1;
