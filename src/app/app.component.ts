@@ -4,6 +4,8 @@ import { MovimentoManualService } from './movimento-manual.service';
 import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Movimento } from './formulario/movimento';
 import { ANOS_VALIDOS } from 'src/environments/environment';
+import { MESES_VALIDOS } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-root',
@@ -16,9 +18,14 @@ export class AppComponent implements OnInit{
   formAtivo: boolean = true;
   movimentoObject!: Movimento;
   grid: any = [];
-  mes: any =[1,2,3,4,5,6,7,8,9,10,11,12];
+  mes: any =MESES_VALIDOS;
   ano: any =ANOS_VALIDOS;
-  
+  btnLimpar: boolean = true;
+  btnNovo: boolean = false;
+  btnIncluir: boolean = true;
+  btnBuscar: boolean = false;
+
+
  constructor(
     private movimentoManualService :MovimentoManualService,
     private fb: FormBuilder
@@ -27,15 +34,11 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.obterTodos()
-    this.configurarFormulario();
+    this.criarFormulario();
     this.movimentoObject = new Movimento;
   }
   
-  testar(){
-    console.log(this.ano)
-  }
-
-  configurarFormulario(){
+  criarFormulario(){
     this.formMovimento = this.fb.group({
       datMes: [],
       datAno: [],
@@ -49,6 +52,36 @@ export class AppComponent implements OnInit{
       ativo: [true],
       codProduto: [],
     });
+    this.btnIncluir = true;
+    this.btnLimpar = true;
+    this.btnNovo = false;
+    this.btnBuscar = false;
+
+  }
+
+  limpar(){
+    this.criarFormulario()
+  }
+  
+  modoEdicao(){
+    this.formMovimento = this.fb.group({
+      datMes: [],
+      datAno: [],
+      numeroLacamento: [""],
+      datcodProdutoes: [""],
+      codCosif: [""],
+      descricao: [""],
+      dataMovimento: [""],
+      codUsuario: [""],
+      valor: [""],
+      ativo: [false],
+      codProduto: [],
+    });
+    this.btnIncluir = false;
+    this.btnLimpar = false;
+    this.btnNovo = true;
+    this.btnBuscar = true;
+
   }
 
   criar(){

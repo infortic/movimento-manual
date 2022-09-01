@@ -17,29 +17,29 @@
     </div><br>
     <div class="row">
       <div class="col">
-        <input type="text" [disabled]="true" class="form-control" placeholder="Produto" formControlName="codProduto">
+        <input type="text" [readonly]="formMovimento.value.ativo" class="form-control" placeholder="Produto" formControlName="codProduto">
       </div>
       <div class="col">
-        <input type="number" [disabled]="formMovimento.value.ativo" class="form-control" placeholder="Cosif" formControlName="codCosif">
+        <input type="number" [readonly]="formMovimento.value.ativo" class="form-control" placeholder="Cosif" formControlName="codCosif">
       </div>
     </div><br>
     <div class="row">
       <div class="col">
-        <input [disabled]="true" type="number" class="form-control" [disabled]="formMovimento.value.ativo" placeholder="Valor" formControlName="valor">
+        <input type="number" class="form-control" [readonly]="formMovimento.value.ativo" placeholder="Valor" formControlName="valor">
       </div>
     </div><br>
     <div class="form-group">
-        <textarea type="text" class="form-control" placeholder="Descriçao" formControlName="descricao"></textarea>
+        <textarea [readonly]="formMovimento.value.ativo" type="text" class="form-control" placeholder="Descriçao" formControlName="descricao"></textarea>
     </div>
   </form>
   <div class="container-fluid m-3 p-3" align="center">
     <table>
       <tbody>
         <tr>
-          <td><button type="button" class="btn btn-primary btn-sm" (click)="testar()">Limpar</button></td>
-          <td><button type="button" class="btn btn-primary btn-sm" >Novo</button></td>
-          <td><button type="button" class="btn btn-primary btn-sm" (click)="criar()">Incluir</button></td>
-          <td><button type="button" (click)="obterTodos()" class="btn btn-primary btn-sm">Buscar</button></td>
+          <td><button type="button" class="btn btn-primary btn-sm" [disabled]="btnLimpar" (click)="limpar()">Limpar</button></td>
+          <td><button type="button" class="btn btn-primary btn-sm" (click)="modoEdicao()" [disabled]="btnNovo">Novo</button></td>
+          <td><button type="button" class="btn btn-primary btn-sm" (click)="criar()" [disabled]="btnIncluir">Incluir</button></td>
+          <td><button type="button" (click)="obterTodos()" class="btn btn-primary btn-sm" [disabled]="btnBuscar">Buscar</button></td>
         </tr>
       </tbody>
     </table>

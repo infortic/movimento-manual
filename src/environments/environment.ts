@@ -7,6 +7,7 @@ export const environment = {
 };
 
 export const API_PATH = "http://localhost:8080/"
+export const MESES_VALIDOS: number[] = [1,2,3,4,5,6,7,8,9,10,11,12]
 export const ANOS_VALIDOS: number[] = [1990,
 1991,
 1992,
