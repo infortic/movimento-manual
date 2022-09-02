@@ -24,7 +24,8 @@ export class AppComponent implements OnInit{
   btnNovo: boolean = false;
   btnIncluir: boolean = true;
   btnBuscar: boolean = false;
-
+  comboProduto: any = [];
+  comboCosif: any = [];
 
  constructor(
     private movimentoManualService :MovimentoManualService,
@@ -33,7 +34,8 @@ export class AppComponent implements OnInit{
   {}
 
   ngOnInit(): void {
-    this.obterTodos()
+    this.obterProdutos();
+    this.obterTodos();
     this.criarFormulario();
     this.movimentoObject = new Movimento;
   }
@@ -102,5 +104,16 @@ export class AppComponent implements OnInit{
     this.movimentoManualService.oberMovimentoPorMesAno(mes, ano)
     .then(movimento => console.log(movimento))
     .catch(error => console.error(error));
-  }  
+  } 
+  
+  obterProdutos(){
+    this.movimentoManualService.obterProdutos()
+    .then(produto => this.comboProduto = produto,);
+  }
+
+  obterCosifPorCodProduto(id: number){
+    this.movimentoManualService.obterCosifPorCodProduto(id)
+    .then(cosif => this.comboCosif = cosif);
+    console.log(this.comboCosif)
+  }
 }

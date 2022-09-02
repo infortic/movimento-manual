@@ -3,21 +3,18 @@
   <form method="post" [formGroup]="formMovimento" (ngSubmit)="criar()">
     <div class="row">
       <div class="col">
-        <select type="number" class="form-control" placeholder="Mês"  formControlName="datMes">
-          <option>Escolha um mês</option>
-          <option *ngFor="let mes of mes">{{mes}}</option>
-        </select>
+        <input type="number" class="form-control" placeholder="Mês"  formControlName="datMes">
       </div>
       <div class="col">
-        <select type="number" class="form-control" placeholder="Ano"  formControlName="datAno">
-          <option>Escolha um ano</option>
-          <option *ngFor="let ano of ano">{{ano}}</option>
-        </select>
+        <input type="number" class="form-control" placeholder="Ano" formControlName="datAno">
       </div>
     </div><br>
     <div class="row">
       <div class="col">
-        <input type="text" [readonly]="formMovimento.value.ativo" class="form-control" placeholder="Produto" formControlName="codProduto">
+        <select [disabled]="formMovimento.value.ativo" class="form-control">
+          <option>Escolha um produto</option>
+          <option *ngFor="let produto of comboProduto">{{produto.descricao}}</option>
+        </select>
       </div>
       <div class="col">
         <input type="number" [readonly]="formMovimento.value.ativo" class="form-control" placeholder="Cosif" formControlName="codCosif">
@@ -39,7 +36,7 @@
           <td><button type="button" class="btn btn-primary btn-sm" [disabled]="btnLimpar" (click)="limpar()">Limpar</button></td>
           <td><button type="button" class="btn btn-primary btn-sm" (click)="modoEdicao()" [disabled]="btnNovo">Novo</button></td>
           <td><button type="button" class="btn btn-primary btn-sm" (click)="criar()" [disabled]="btnIncluir">Incluir</button></td>
-          <td><button type="button" (click)="obterTodos()" class="btn btn-primary btn-sm" [disabled]="btnBuscar">Buscar</button></td>
+          <td><button type="button" (click)="oberMovimentoPorMesAno(formMovimento.value.datMes, formMovimento.value.datAno)" class="btn btn-primary btn-sm" [disabled]="btnBuscar">Buscar</button></td>
         </tr>
       </tbody>
     </table>
