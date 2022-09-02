@@ -17,7 +17,10 @@
         </select>
       </div>
       <div class="col">
-        <input type="number" [readonly]="formMovimento.value.ativo" class="form-control" placeholder="Cosif" formControlName="codCosif">
+        <select [disabled]="formMovimento.value.ativo" class="form-control">
+          <option>Codigo Cosif</option>
+          <option *ngFor="let cosif of codProdCosif">{{cosif}}</option>
+        </select>
       </div>
     </div><br>
     <div class="row">
@@ -36,7 +39,7 @@
           <td><button type="button" class="btn btn-primary btn-sm" [disabled]="btnLimpar" (click)="limpar()">Limpar</button></td>
           <td><button type="button" class="btn btn-primary btn-sm" (click)="modoEdicao()" [disabled]="btnNovo">Novo</button></td>
           <td><button type="button" class="btn btn-primary btn-sm" (click)="criar()" [disabled]="btnIncluir">Incluir</button></td>
-          <td><button type="button" (click)="oberMovimentoPorMesAno(formMovimento.value.datMes, formMovimento.value.datAno)" class="btn btn-primary btn-sm" [disabled]="btnBuscar">Buscar</button></td>
+          <td><button type="button" (click)="oberMovimentoPorMesAno()" class="btn btn-primary btn-sm" [disabled]="btnBuscar">Buscar</button></td>
         </tr>
       </tbody>
     </table>

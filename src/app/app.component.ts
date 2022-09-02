@@ -15,6 +15,7 @@ import { MESES_VALIDOS } from 'src/environments/environment';
 export class AppComponent implements OnInit{
   title = 'MovimentoManual';
   formMovimento!: FormGroup;
+  codProdCosif: any = [445,3345,6654]
   formAtivo: boolean = true;
   movimentoObject!: Movimento;
   grid: any = [];
@@ -61,6 +62,7 @@ export class AppComponent implements OnInit{
 
   }
 
+
   limpar(){
     this.criarFormulario()
   }
@@ -88,8 +90,6 @@ export class AppComponent implements OnInit{
 
   criar(){
     this.movimentoObject.datMes = this.formMovimento.value.datMes
-
-    console.log(this.movimentoObject)
     this.movimentoManualService.incluir(this.movimentoObject)
   }
 
@@ -100,9 +100,11 @@ export class AppComponent implements OnInit{
     console.log(this.grid)
   }
 
-  oberMovimentoPorMesAno(mes: number, ano: number){
-    this.movimentoManualService.oberMovimentoPorMesAno(mes, ano)
-    .then(movimento => console.log(movimento))
+  
+
+  oberMovimentoPorMesAno(){
+    this.movimentoManualService.oberMovimentoPorMesAno(this.formMovimento.value.datMes, this.formMovimento.value.datAno)
+    .then(movimento => this.grid = movimento)
     .catch(error => console.error(error));
   } 
   
